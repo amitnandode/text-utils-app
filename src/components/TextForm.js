@@ -4,25 +4,31 @@ export default function TextForm(props) {
   const handleUpperClick = () => {
     const newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to uppercase!", "success");
   };
 
   const handleLowerClick = () => {
     const newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowercase!", "success");
   };
 
   const handleClearClick = () => {
     setText("");
+    props.showAlert("Text cleared!", "success");
   };
 
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
 
-  const [text, setText] = useState("Enter text here");
+  const [text, setText] = useState("");
   return (
     <>
-      <div className="container">
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
         <h3>{props.heading}</h3>
         <div className="mb-3">
           <textarea
@@ -31,6 +37,10 @@ export default function TextForm(props) {
             value={text}
             rows="7"
             onChange={handleOnChange}
+            style={{
+              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              color: props.mode === "dark" ? "white" : "black",
+            }}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpperClick}>
@@ -43,7 +53,10 @@ export default function TextForm(props) {
           Clear
         </button>
       </div>
-      <div className="container my-2">
+      <div
+        className="container my-2"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
         <h1>Your text summary</h1>
         <p>
           {text.trim().split(" ").length} words and {text.length} chars

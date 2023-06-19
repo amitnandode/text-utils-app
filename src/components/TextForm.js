@@ -23,6 +23,7 @@ export default function TextForm(props) {
   };
 
   const [text, setText] = useState("");
+
   return (
     <>
       <div
@@ -38,7 +39,7 @@ export default function TextForm(props) {
             rows="7"
             onChange={handleOnChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#041732" : "white",
               color: props.mode === "dark" ? "white" : "black",
             }}
           ></textarea>
@@ -59,7 +60,8 @@ export default function TextForm(props) {
       >
         <h1>Your text summary</h1>
         <p>
-          {text.trim().split(" ").length} words and {text.length} chars
+          {text.trim() === "" ? 0 : text.trim().split(" ").length} words and{" "}
+          {text.length} chars
         </p>
         <h3>Preview</h3>
         <p>{text}</p>
